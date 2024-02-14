@@ -1,30 +1,50 @@
-class Product{
-int pcode;
-String pname;
-double price;
-public Product(int a,String b,double c)
-{
-pcode=a;
-pname=b;
-price=c;
+import java.util.Scanner;
+
+class Product {
+    String pcode;
+    String pname;
+    double price;
+
+    public Product(String pcode, String pname, double price) {
+        this.pcode = pcode;
+        this.pname = pname;
+        this.price = price;
+    }
 }
-}
-public class Main{
-public static void main(String []args)
-{
-System.out.println("Abhirami Vinod\n 23MCA002\n 13-Feb-2023");
-Product p1=new Product(1,"Apple",150);
-Product p2=new Product(2,"kiwi",70);
-Product p3=new Product(3,"Grapes",160);
-Product cheapestproduct=p1;
-if(p2.price<cheapestproduct.price)
-{
-cheapestproduct=p2;
-}
-if(p3.price<cheapestproduct.price)
-{
-cheapestproduct=p3;
-}
-System.out.println("The product with lowest price is "+cheapestproduct.pname+" with a price of "+cheapestproduct.price);
-}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+       
+        Product[] products = new Product[3];
+        System.out.println(" Abhirami Vinod \n 23MCA002 \n 13-FEB-2024");
+        for (int i = 0; i < products.length; i++) {
+            System.out.println("Enter details for product " + (i + 1) + ":");
+            System.out.print("Product code: ");
+            String pcode = scanner.nextLine();
+            System.out.print("Product name: ");
+            String pname = scanner.nextLine();
+            System.out.print("Price: ");
+            double price = scanner.nextDouble();
+            scanner.nextLine(); 
+            products[i] = new Product(pcode, pname, price);
+        }
+
+        
+        Product lowestPriceProduct = products[0];
+        for (int i = 1; i < products.length; i++) {
+            if (products[i].price < lowestPriceProduct.price) {
+                lowestPriceProduct = products[i];
+            }
+        }
+
+        
+        System.out.println("\nProduct with the lowest price:");
+        System.out.println("Product code: " + lowestPriceProduct.pcode);
+        System.out.println("Product name: " + lowestPriceProduct.pname);
+        System.out.println("Price: " + lowestPriceProduct.price);
+
+        scanner.close();
+    }
 }
